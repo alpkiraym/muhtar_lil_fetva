@@ -181,6 +181,7 @@ footer{max-width:880px;margin:0 auto;padding:20px 16px 64px;color:var(--muted);f
 .rlist li{border:1px solid var(--line);border-radius:8px;padding:6px 9px;margin:6px 0;display:flex;gap:8px;justify-content:space-between;align-items:flex-start}
 .rlist li small{color:var(--muted)}
 .rlist li button{border:none;background:none;color:var(--bad);cursor:pointer;font-size:.9rem}
+a.ext{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .sig{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:5px 12px calc(5px + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line);font-family:Inter,system-ui,sans-serif;font-size:.7rem;letter-spacing:.02em;color:var(--muted)}
 .sig b{color:var(--accent);font-weight:600}
 .sig i{font-style:normal;opacity:.5}
@@ -207,7 +208,7 @@ footer{max-width:880px;margin:0 auto;padding:20px 16px 64px;color:var(--muted);f
 <h2 style="font-size:1.1rem">Sayfa yükleniyor…</h2>
 <p>Bu yazıyı görmeye devam ediyorsan, dosyayı açtığın uygulama JavaScript çalıştırmıyor demektir. iPhone/iPad'de Dosyalar, Mail veya WhatsApp önizlemesi bu durumdadır.</p>
 <p><b>Çözüm:</b> Dosyayı bir bilgisayarda tarayıcıyla (Chrome, Safari, Edge) aç, ya da sayfanın internet adresini kullan.</p></div></main>
-<footer>Arapça metin: Abdullah b. Mahmûd el-Mevsılî, <i>el-Muhtâr li'l-Fetvâ</i> ve <i>el-İhtiyâr li-Ta'lîli'l-Muhtâr</i> (harekeli metin) · Türkçe tercüme: Prof. Dr. Orhan ÇEKER, <i>Muhtâr'ın Anahtarı</i></footer>
+<footer>Arapça metin: <a class="ext" href="https://islamansiklopedisi.org.tr/mevsili-abdullah-b-mahmud" target="_blank" rel="noopener" title="TDV İslâm Ansiklopedisi: Mevsılî, Abdullah b. Mahmûd">Abdullah b. Mahmûd el-Mevsılî</a>, <i>el-Muhtâr li'l-Fetvâ</i> ve <i>el-İhtiyâr li-Ta'lîli'l-Muhtâr</i> (harekeli metin) · Türkçe tercüme: Prof. Dr. Orhan ÇEKER, <i>Muhtâr'ın Anahtarı</i></footer>
 <div class="modal" id="repModal" role="dialog" aria-modal="true" aria-labelledby="repTitle"><div class="mbox" id="repBox"></div></div>
 <div class="sig"><span>© 2026 Her hakkı saklıdır</span><i>·</i><span>Designed by: <b>M.ALPKİRAY</b></span></div>
 
@@ -263,7 +264,7 @@ function renderHome(){
   content.innerHTML = `<div class="hero">
     <div class="ar">الْمُخْتَارُ لِلْفَتْوَى</div>
     <h1>EL-MUHTÂR Lİ'L-FETVÂ</h1>
-    <p>Abdullah b. Mahmûd el-Mevsılî (ö. 683/1284) · İbare ve tercüme. Her ibarenin altında Prof. Dr. Orhan ÇEKER'in <i>Muhtâr'ın Anahtarı</i>'ndaki tercümesi ve dipnotları, isteğe bağlı açılan el-İhtiyâr şerhi, her bölümün sonunda bir test.</p>
+    <p><a class="ext" href="https://islamansiklopedisi.org.tr/mevsili-abdullah-b-mahmud" target="_blank" rel="noopener" title="TDV İslâm Ansiklopedisi: Mevsılî, Abdullah b. Mahmûd">Abdullah b. Mahmûd el-Mevsılî</a> (ö. 683/1284) · İbare ve tercüme. Her ibarenin altında Prof. Dr. Orhan ÇEKER'in <i>Muhtâr'ın Anahtarı</i>'ndaki tercümesi ve dipnotları, isteğe bağlı açılan el-İhtiyâr şerhi, her bölümün sonunda bir test.</p>
     <div class="totals"><div><b>${BOOKS.length}</b>kitap</div><div><b>${totalIb}</b>ibare</div><div><b>${totalQ}</b>soru</div><div><b>${doneSec}/${totalSec}</b>test çözüldü</div></div>
     <div class="legend"><b>Kullanım:</b> Bir kitaba girip bölümler arasında üstteki sekmelerle geçebilirsin. <b>Türkçeyi gizle</b> tercümeleri bulanıklaştırır (dokununca açılır); <b>Harekeleri gizle</b> Arapçayı harekesiz gösterir; <b>Şerhleri aç</b> el-İhtiyâr şerhini açar. Arapça metindeki küçük <span class="mk" style="font-size:.9em">(ف)</span> <span class="mk" style="font-size:.9em">(ز)</span> gibi harfler kitabın kendi işaretleridir; o meselede farklı görüşte olan imamlara işaret eder.</div>
   </div>
