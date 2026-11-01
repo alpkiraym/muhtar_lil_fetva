@@ -441,9 +441,11 @@ function locOf(ib){
   const ar=item[0].replace(/\[\[\d+\]\]/g,''), w=ar.split(/\s+/);
   return {book:b.tr, sec:`${si+1}. ${s.tr}`, n, ar: w.slice(0,9).join(' ')+(w.length>9?' …':''), tr:(item[1]||'').replace(/\[\[\d+\]\]/g,'').slice(0,90)};
 }
-const subj=r=>`[Muhtâr Hata] ${r.book} · ${r.sec.split('.')[0]}. bölüm · ibare ${r.n}`;
-const bodyOne=r=>`Kitap: ${r.book}\nBölüm: ${r.sec}\nİbare no: ${r.n}\nArapça (baş): ${r.ar}\nTürkçe (baş): ${r.tr}\nHata türü: ${r.type}\nNot: ${r.note||'-'}`;
-const mailto=(su,bo)=>`mailto:${MAIL}?subject=${encodeURIComponent(su)}&body=${encodeURIComponent(bo)}`;
+const subj=r=>`[Muhtar Hata] ${r.book} - ${r.sec.split('.')[0]}. bolum - ibare ${r.n}`;
+const plain=t=>String(t).replace(/[\u0600-\u06FF\u200c-\u200f]+/g,'').replace(/[“”«»]/g,'"').replace(/[‘’]/g,"'").replace(/[·—–…]/g,'-').replace(/\s{2,}/g,' ').trim();
+const bodyOne=r=>`Kitap: ${plain(r.book)}\nBolum: ${plain(r.sec)}\nIbare no: ${r.n}\nTurkce (bas): ${plain(r.tr)}\nHata turu: ${plain(r.type)}\nNot: ${plain(r.note)||'-'}`;
+const mailto=(su,bo)=>`mailto:${MAIL}?subject=${encodeURIComponent(plain(su))}&body=${encodeURIComponent(plain2(bo)).replace(/%0A/g,'%0D%0A')}`;
+const plain2=t=>t.split('\n').map(plain).join('\n');
 const gmail=(su,bo)=>`https://mail.google.com/mail/?view=cm&fs=1&to=${MAIL}&su=${encodeURIComponent(su)}&body=${encodeURIComponent(bo)}`;
 function copyText(t,msgEl){
   const done=()=>{msgEl.textContent=`Kopyalandı. Şimdi ${MAIL} adresine yapıştırıp gönderebilirsin.`;};
@@ -479,7 +481,7 @@ function openReport(ib){
 }
 function openList(){
   const l=getList();
-  const su=`[Muhtâr Hata] Toplu bildirim (${l.length} hata)`;
+  const su=`[Muhtar Hata] Toplu bildirim (${l.length} hata)`;
   const bo=l.map((r,i)=>`--- ${i+1} ---\n${bodyOne(r)}`).join('\n\n');
   openModal(`<h3 id="repTitle">Bildirimlerim (${l.length})</h3>
     ${l.length?`<ul class="rlist">${l.map((r,i)=>`<li><div><b>${esc(r.book)}</b> · ${esc(r.sec)} · ibare ${r.n}<br><small>${esc(r.type)}${r.note?' — '+esc(r.note):''}</small></div><button data-del="${i}" title="Listeden çıkar">✕</button></li>`).join('')}</ul>`:'<p>Liste boş.</p>'}
