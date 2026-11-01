@@ -101,7 +101,7 @@ body.hide-tr .ib .tr.show::before{content:""}
 .notes a{color:var(--accent);text-decoration:none;cursor:pointer;font-weight:700}
 .flash{animation:flash 1.6s ease}
 @keyframes flash{0%{background:var(--gold-soft,rgba(200,160,60,.35))}100%{background:transparent}}
-.tr .own{display:inline-block;font-family:Inter,sans-serif;font-size:.66rem;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:0 6px;margin-left:6px;vertical-align:middle}
+.tr .own,.legend .own{display:inline-block;font-family:Inter,sans-serif;font-size:.66rem;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:0 6px;margin-left:6px;vertical-align:middle}
 .cat{margin:28px 0 10px;display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
 .cat h2{margin:0;font-size:1.05rem}
 .cat span{color:var(--muted);font-size:.8rem}
@@ -266,7 +266,7 @@ function renderHome(){
     <h1>EL-MUHTÂR Lİ'L-FETVÂ</h1>
     <p><a class="ext" href="https://islamansiklopedisi.org.tr/mevsili-abdullah-b-mahmud" target="_blank" rel="noopener" title="TDV İslâm Ansiklopedisi: Mevsılî, Abdullah b. Mahmûd">Abdullah b. Mahmûd el-Mevsılî</a> (ö. 683/1284) · İbare ve tercüme. Her ibarenin altında <a class="ext" href="https://tr.wikipedia.org/wiki/Orhan_%C3%87eker" target="_blank" rel="noopener" title="Vikipedi: Orhan Çeker">Prof. Dr. Orhan ÇEKER</a>'in <i>Muhtâr'ın Anahtarı</i>'ndaki tercümesi ve dipnotları, isteğe bağlı açılan el-İhtiyâr şerhi, her bölümün sonunda bir test bulunuyor.</p>
     <div class="totals"><div><b>${BOOKS.length}</b>kitap</div><div><b>${totalIb}</b>ibare</div><div><b>${totalQ}</b>soru</div><div><b>${doneSec}/${totalSec}</b>test çözüldü</div></div>
-    <div class="legend"><b>Kullanım:</b> Bir kitaba girip bölümler arasında üstteki sekmelerle geçebilirsin. <b>Türkçeyi gizle</b> tercümeleri bulanıklaştırır (dokununca açılır); <b>Harekeleri gizle</b> Arapçayı harekesiz gösterir; <b>Şerhleri aç</b> el-İhtiyâr şerhini açar. Arapça metindeki küçük <span class="mk" style="font-size:.9em">(ف)</span> <span class="mk" style="font-size:.9em">(ز)</span> gibi harfler kitabın kendi işaretleridir; o meselede farklı görüşte olan imamlara işaret eder.</div>
+    <div class="legend"><b>Kullanım:</b> Bir kitaba girip bölümler arasında üstteki sekmelerle geçebilirsin. <b>Türkçeyi gizle</b> tercümeleri bulanıklaştırır (dokununca açılır); <b>Harekeleri gizle</b> Arapçayı harekesiz gösterir; <b>Şerhleri aç</b> el-İhtiyâr şerhini açar. Arapça metindeki küçük <span class="mk" style="font-size:.9em">(ف)</span> <span class="mk" style="font-size:.9em">(ز)</span> gibi harfler kitabın kendi işaretleridir; o meselede farklı görüşte olan imamlara işaret eder. <br><b>Not:</b> Bazı ibarelerin altında <span class="own" style="margin-left:0">ek tercüme</span> etiketi bulunur. Bu ibareler <i>Muhtâr'ın Anahtarı</i>'nda ayrıca tercüme edilmediği için tercümeleri bu çalışmada yapılmıştır; Prof. Dr. Orhan ÇEKER'e ait değildir.</div>
   </div>
   ${cards}`;
   const hy=+(sessionStorageGet('muhtar-home-y')||0); window.scrollTo(0, hy); sessionStorageSet('muhtar-home-y','0');
