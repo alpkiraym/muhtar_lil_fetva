@@ -891,7 +891,39 @@ function sessionStorageGet(k){try{return sessionStorage.getItem(k);}catch(e){ret
 function sessionStorageSet(k,v){try{sessionStorage.setItem(k,v);}catch(e){}}
 content.addEventListener('click',e=>{const a=e.target.closest('a.book'); if(a){ sessionStorageSet('muhtar-came-from-home',a.getAttribute('href').split('/')[1]); sessionStorageSet('muhtar-home-y',String(window.scrollY)); }});
 
+/* ---------- kaldığı yerden devam: uygulama kapanıp açılınca son kitap ve kaydırma yeri ---------- */
+const SON_KEY='muhtar-son';
+let sonYerY=null;
+(function(){
+  try{
+    const s=store.get(SON_KEY), h=location.hash;
+    if(!s || !s.h) return;
+    const bos = !h || h==='#' || h==='#/';
+    const kitapVar = s.h!=='#/' && BOOKS.some(b => b.id===s.h.split('/')[1]);
+    if(bos && kitapVar){
+      // Kitaplar listesini geçmişte bırak: geri hareketi listeye dönsün
+      history.replaceState(history.state,'','#/');
+      history.pushState(history.state,'',s.h);
+      sessionStorageSet('muhtar-came-from-home', s.h.split('/')[1]);
+      sonYerY = +s.y||0;
+    } else if(h===s.h || (bos && s.h==='#/')){
+      sonYerY = +s.y||0;
+    }
+  }catch(e){}
+})();
+function sonYerKaydet(){ try{ store.set(SON_KEY,{h:location.hash||'#/', y:Math.round(window.scrollY), t:Date.now()}); }catch(e){} }
+let sonYerZ=null;
+addEventListener('scroll',()=>{ clearTimeout(sonYerZ); sonYerZ=setTimeout(sonYerKaydet,400); },{passive:true});
+addEventListener('hashchange',()=>setTimeout(sonYerKaydet,50));
+addEventListener('pagehide',sonYerKaydet);
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden') sonYerKaydet(); });
+
 route();
+if(sonYerY){
+  const y=sonYerY;
+  const git=()=>window.scrollTo(0,y);
+  requestAnimationFrame(git); setTimeout(git,150); setTimeout(()=>{git();sonYerKaydet();},600);
+}
 </script>
 </body>
 </html>
